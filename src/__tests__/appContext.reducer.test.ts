@@ -1,0 +1,40 @@
+import { Action, AppState, initialState, reducer } from '../context/AppContext';
+
+describe('AppContext reducer', () => {
+  it('marks loading state on START_LOADING', () => {
+    const baseState: AppState = {
+      ...initialState,
+      loading: false,
+      error: 'some error',
+    };
+
+    const nextState = reducer(baseState, { type: 'START_LOADING' });
+
+    expect(nextState.loading).toBe(true);
+    expect(nextState.error).toBeNull();
+  });
+
+  it('stores payload data on LOAD_SUCCESS', () => {
+    const action: Action = {
+      type: 'LOAD_SUCCESS',
+      payload: {
+        news: [{ id: 1, title: 'Title', content: 'Content', image: 'img' }],
+        users: [{ id: 1, firstname: 'Ada', lastname: 'Lovelace', email: 'ada@mail.com', phone: '123', avatar: 'avatar' }],
+      },
+    };
+
+    const nextState = reducer(initialState, action);
+
+    expect(nextState.loading).toBe(false);
+    expect(nextState.news).toHaveLength(1);
+    expect(nextState.users).toHaveLength(1);
+  });
+
+  it('toggles favorites ids on TOGGLE_FAVORITE', () => {
+    const firstToggle = reducer(initialState, { type: 'TOGGLE_FAVORITE', payload: 7 });
+    expect(firstToggle.favoriteNewsIds).toEqual([7]);
+
+    const secondToggle = reducer(firstToggle, { type: 'TOGGLE_FAVORITE', payload: 7 });
+    expect(secondToggle.favoriteNewsIds).toEqual([]);
+  });
+});

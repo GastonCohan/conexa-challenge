@@ -3,7 +3,7 @@ import { fetchNews, fetchUsers } from '../api/client';
 import { loadFavoriteIds, saveFavoriteIds } from '../storage/favoritesStorage';
 import { News, User } from '../types';
 
-type AppState = {
+export type AppState = {
   news: News[];
   users: User[];
   favoriteNewsIds: number[];
@@ -17,14 +17,14 @@ type AppContextValue = AppState & {
   isFavorite: (newsId: number) => boolean;
 };
 
-type Action =
+export type Action =
   | { type: 'START_LOADING' }
   | { type: 'LOAD_SUCCESS'; payload: { news: News[]; users: User[] } }
   | { type: 'LOAD_FAVORITES'; payload: number[] }
   | { type: 'TOGGLE_FAVORITE'; payload: number }
   | { type: 'LOAD_ERROR'; payload: string };
 
-const initialState: AppState = {
+export const initialState: AppState = {
   news: [],
   users: [],
   favoriteNewsIds: [],
@@ -34,7 +34,7 @@ const initialState: AppState = {
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 
-const reducer = (state: AppState, action: Action): AppState => {
+export const reducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case 'START_LOADING':
       return { ...state, loading: true, error: null };
