@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppContext } from '../context/AppContext';
@@ -11,6 +12,7 @@ import { RootStackParamList } from '../types';
 type Props = NativeStackScreenProps<RootStackParamList, 'NewsDetail'>;
 
 export const NewsDetailScreen = ({ route }: Props) => {
+  const { t } = useTranslation();
   const { news, isFavorite, toggleFavorite } = useAppContext();
   const { newsId } = route.params;
 
@@ -19,7 +21,7 @@ export const NewsDetailScreen = ({ route }: Props) => {
   if (!item) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.notFound}>No pudimos encontrar la noticia.</Text>
+        <Text style={styles.notFound}>{t('newsDetail.notFound')}</Text>
       </View>
     );
   }
@@ -42,7 +44,7 @@ export const NewsDetailScreen = ({ route }: Props) => {
         </View>
         <View style={styles.metaBadge}>
           <Ionicons name="flash-outline" size={14} color={colors.primaryDark} />
-          <Text style={styles.metaBadgeText}>Breaking News</Text>
+          <Text style={styles.metaBadgeText}>{t('newsDetail.breaking')}</Text>
         </View>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.body}>{item.content}</Text>

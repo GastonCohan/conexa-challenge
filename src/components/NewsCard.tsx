@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../theme/colors';
 import { globalStyles } from '../theme/globalStyles';
@@ -19,36 +20,40 @@ export const NewsCard = ({
   isTopStory = false,
   onPress,
   onToggleFavorite,
-}: Props) => (
-  <Pressable style={styles.card} onPress={onPress}>
-    <Image source={{ uri: item.image }} style={styles.image} />
-    <View style={styles.overlayActions}>
-      {isTopStory ? (
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>Top Story</Text>
-        </View>
-      ) : null}
-      <Pressable
-        style={[styles.favoriteButton, isFavorite && styles.favoriteButtonActive]}
-        onPress={onToggleFavorite}
-      >
-        <Ionicons
-          name={isFavorite ? 'bookmark' : 'bookmark-outline'}
-          size={18}
-          color={isFavorite ? colors.surface : colors.primaryDark}
-        />
-      </Pressable>
-    </View>
-    <View style={styles.content}>
-      <Text numberOfLines={2} style={styles.title}>
-        {item.title}
-      </Text>
-      <Text numberOfLines={3} style={styles.body}>
-        {item.content}
-      </Text>
-    </View>
-  </Pressable>
-);
+}: Props) => {
+  const { t } = useTranslation();
+
+  return (
+    <Pressable style={styles.card} onPress={onPress}>
+      <Image source={{ uri: item.image }} style={styles.image} />
+      <View style={styles.overlayActions}>
+        {isTopStory ? (
+          <View style={styles.badge}>
+            <Text style={styles.badgeText}>{t('newsCard.topStory')}</Text>
+          </View>
+        ) : null}
+        <Pressable
+          style={[styles.favoriteButton, isFavorite && styles.favoriteButtonActive]}
+          onPress={onToggleFavorite}
+        >
+          <Ionicons
+            name={isFavorite ? 'bookmark' : 'bookmark-outline'}
+            size={18}
+            color={isFavorite ? colors.surface : colors.primaryDark}
+          />
+        </Pressable>
+      </View>
+      <View style={styles.content}>
+        <Text numberOfLines={2} style={styles.title}>
+          {item.title}
+        </Text>
+        <Text numberOfLines={3} style={styles.body}>
+          {item.content}
+        </Text>
+      </View>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   card: {

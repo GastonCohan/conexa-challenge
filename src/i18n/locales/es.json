@@ -1,0 +1,50 @@
+{
+  "login": {
+    "title": "News Reader",
+    "subtitle": "Inicia sesión para continuar",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "passwordPlaceholder": "Contraseña",
+    "submit": "Entrar",
+    "hint": "Correo: formato habitual (ejemplo@dominio.com). Contraseña: mínimo 8 caracteres, una letra y un número.",
+    "errorInvalid": "Revisa el formato del correo y de la contraseña.",
+    "errorEmail": "Introduce un correo válido (ejemplo@dominio.com).",
+    "errorPassword": "La contraseña debe tener al menos 8 caracteres, una letra y un número."
+  },
+  "tabs": {
+    "news": "Noticias",
+    "favorites": "Favoritas",
+    "users": "Usuarios",
+    "settings": "Ajustes"
+  },
+  "newsDetail": {
+    "headerTitle": "Detalle",
+    "breaking": "Última hora",
+    "notFound": "No pudimos encontrar la noticia."
+  },
+  "home": {
+    "searchNews": "Buscar noticias...",
+    "searchFavorites": "Buscar en favoritas...",
+    "empty": "No se encontraron noticias para ese criterio.",
+    "loadingMore": "Cargando más noticias..."
+  },
+  "users": {
+    "community": "Comunidad",
+    "loadingMore": "Cargando más usuarios..."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "language": "Idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+    "logout": "Cerrar sesión",
+    "account": "Sesión como",
+    "mockNote": "Login de demostración — sin servidor real."
+  },
+  "newsCard": {
+    "topStory": "Top Story"
+  },
+  "errors": {
+    "loadFailed": "No se pudieron cargar los datos",
+    "banner": "No se pudo actualizar. Mostrando datos en caché."
+  }
+}

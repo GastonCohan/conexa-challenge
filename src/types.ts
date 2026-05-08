@@ -24,4 +24,5 @@ export type HomeTabParamList = {
   Home: { onlyFavorites?: boolean } | undefined;
   Favorites: { onlyFavorites?: boolean } | undefined;
   Users: undefined;
+  Settings: undefined;
 };

@@ -1,5 +1,14 @@
-import React, { createContext, ReactNode, useContext, useEffect, useMemo, useReducer } from 'react';
-import { fetchNews, fetchUsers } from '../api/client';
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from 'react';
+import { fetchNews, fetchUsers, invalidateNewsUsersCache } from '../api/client';
 import { loadFavoriteIds, saveFavoriteIds } from '../storage/favoritesStorage';
 import { News, User } from '../types';
 
@@ -8,17 +17,19 @@ export type AppState = {
   users: User[];
   favoriteNewsIds: number[];
   loading: boolean;
+  refreshing: boolean;
   error: string | null;
 };
 
 type AppContextValue = AppState & {
-  refreshData: () => Promise<void>;
+  refreshData: (options?: { bypassCache?: boolean }) => Promise<void>;
   toggleFavorite: (newsId: number) => void;
   isFavorite: (newsId: number) => boolean;
 };
 
 export type Action =
   | { type: 'START_LOADING' }
+  | { type: 'START_REFRESH' }
   | { type: 'LOAD_SUCCESS'; payload: { news: News[]; users: User[] } }
   | { type: 'LOAD_FAVORITES'; payload: number[] }
   | { type: 'TOGGLE_FAVORITE'; payload: number }
@@ -29,6 +40,7 @@ export const initialState: AppState = {
   users: [],
   favoriteNewsIds: [],
   loading: true,
+  refreshing: false,
   error: null,
 };
 
@@ -37,11 +49,14 @@ const AppContext = createContext<AppContextValue | undefined>(undefined);
 export const reducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case 'START_LOADING':
-      return { ...state, loading: true, error: null };
+      return { ...state, loading: true, refreshing: false, error: null };
+    case 'START_REFRESH':
+      return { ...state, refreshing: true, error: null };
     case 'LOAD_SUCCESS':
       return {
         ...state,
         loading: false,
+        refreshing: false,
         error: null,
         news: action.payload.news,
         users: action.payload.users,
@@ -58,7 +73,7 @@ export const reducer = (state: AppState, action: Action): AppState => {
       };
     }
     case 'LOAD_ERROR':
-      return { ...state, loading: false, error: action.payload };
+      return { ...state, loading: false, refreshing: false, error: action.payload };
     default:
       return state;
   }
@@ -66,23 +81,29 @@ export const reducer = (state: AppState, action: Action): AppState => {
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const hasLoadedOnceRef = useRef(false);
 
-  const refreshData = async () => {
-    dispatch({ type: 'START_LOADING' });
+  const refreshData = useCallback(async (options?: { bypassCache?: boolean }) => {
+    if (options?.bypassCache) {
+      await invalidateNewsUsersCache();
+    }
+    const silent = Boolean(options?.bypassCache && hasLoadedOnceRef.current);
+    dispatch({ type: silent ? 'START_REFRESH' : 'START_LOADING' });
     try {
       const [news, users] = await Promise.all([fetchNews(), fetchUsers()]);
       dispatch({ type: 'LOAD_SUCCESS', payload: { news, users } });
+      hasLoadedOnceRef.current = true;
     } catch (error) {
       dispatch({
         type: 'LOAD_ERROR',
         payload: error instanceof Error ? error.message : 'Failed to load data',
       });
     }
-  };
+  }, []);
 
   useEffect(() => {
     refreshData();
-  }, []);
+  }, [refreshData]);
 
   useEffect(() => {
     loadFavoriteIds()
@@ -107,7 +128,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       toggleFavorite: (newsId: number) => dispatch({ type: 'TOGGLE_FAVORITE', payload: newsId }),
       isFavorite,
     }),
-    [state],
+    [state, refreshData],
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

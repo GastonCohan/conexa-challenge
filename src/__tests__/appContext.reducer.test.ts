@@ -5,6 +5,7 @@ describe('AppContext reducer', () => {
     const baseState: AppState = {
       ...initialState,
       loading: false,
+      refreshing: false,
       error: 'some error',
     };
 
@@ -28,6 +29,22 @@ describe('AppContext reducer', () => {
     expect(nextState.loading).toBe(false);
     expect(nextState.news).toHaveLength(1);
     expect(nextState.users).toHaveLength(1);
+  });
+
+  it('marks refreshing state on START_REFRESH without clearing lists', () => {
+    const loaded: AppState = {
+      ...initialState,
+      loading: false,
+      refreshing: false,
+      news: [{ id: 1, title: 'T', content: 'C', image: 'i' }],
+      users: [],
+    };
+
+    const nextState = reducer(loaded, { type: 'START_REFRESH' });
+
+    expect(nextState.refreshing).toBe(true);
+    expect(nextState.loading).toBe(false);
+    expect(nextState.news).toHaveLength(1);
   });
 
   it('toggles favorites ids on TOGGLE_FAVORITE', () => {

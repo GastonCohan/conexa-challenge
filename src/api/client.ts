@@ -41,6 +41,11 @@ const writeCache = async <T,>(key: string, data: T) => {
   await AsyncStorage.setItem(key, JSON.stringify(payload));
 };
 
+/** Clears persisted API payloads so the next fetch hits the network (used on pull-to-refresh). */
+export const invalidateNewsUsersCache = async (): Promise<void> => {
+  await AsyncStorage.multiRemove(['cache:news:v2', 'cache:users:v2']);
+};
+
 const fetchJson = async <T,>(endpoint: string): Promise<T> => {
   const response = await fetch(`${API_BASE_URL}${endpoint}`);
   if (!response.ok) {

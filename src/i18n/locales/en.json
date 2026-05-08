@@ -1,0 +1,50 @@
+{
+  "login": {
+    "title": "News Reader",
+    "subtitle": "Sign in to continue",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "Password",
+    "submit": "Sign in",
+    "hint": "Email: standard format (example@domain.com). Password: at least 8 characters with one letter and one number.",
+    "errorInvalid": "Check your email and password format.",
+    "errorEmail": "Enter a valid email (example@domain.com).",
+    "errorPassword": "Password must be at least 8 characters and include one letter and one number."
+  },
+  "tabs": {
+    "news": "News",
+    "favorites": "Favorites",
+    "users": "Users",
+    "settings": "Settings"
+  },
+  "newsDetail": {
+    "headerTitle": "Article",
+    "breaking": "Breaking News",
+    "notFound": "We could not find this article."
+  },
+  "home": {
+    "searchNews": "Search news...",
+    "searchFavorites": "Search favorites...",
+    "empty": "No articles match your search.",
+    "loadingMore": "Loading more articles..."
+  },
+  "users": {
+    "community": "Community",
+    "loadingMore": "Loading more users..."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "english": "English",
+    "spanish": "Spanish",
+    "logout": "Sign out",
+    "account": "Signed in as",
+    "mockNote": "Demo login — no real backend."
+  },
+  "newsCard": {
+    "topStory": "Top Story"
+  },
+  "errors": {
+    "loadFailed": "Failed to load data",
+    "banner": "Could not refresh. Showing cached data."
+  }
+}
