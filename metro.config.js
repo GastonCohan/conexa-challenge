@@ -1,11 +1,17 @@
+/**
+ * Configuración de Metro (bundler de React Native / Expo).
+ *
+ * ¿Qué hace? Intercepta la resolución del paquete `react-i18next` y fuerza la entrada CommonJS.
+ *
+ * ¿Por qué así? react-i18next v17 puede publicar ESM con especificadores que Metro no resuelve bien;
+ * apuntar a `dist/commonjs` evita fallos de bundle en algunos entornos.
+ */
 const path = require('path');
 const { getDefaultConfig } = require('expo/metro-config');
 
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname);
 
-// Metro + react-i18next v17 ESM (explicit .js specifiers) fails to resolve on some setups.
-// Point the package entry at CommonJS so Metro follows require()-based graph instead.
 const reactI18nextCommonJs = path.resolve(
   __dirname,
   'node_modules/react-i18next/dist/commonjs/index.js',

@@ -1,3 +1,12 @@
+/**
+ * Cliente HTTP y normalización para noticias y usuarios.
+ *
+ * ¿Qué hace? Combina APIs públicas (JSONPlaceholder posts/users, fotos y randomuser.me), sanea URLs de imagen rotas,
+ * y cachea listas completas en AsyncStorage con TTL; `invalidateNewsUsersCache` limpia caché al pull-to-refresh.
+ *
+ * ¿Por qué así? Una sola capa de fetch mantiene tipos News/User coherentes con `types.ts` y reduce duplicación en pantallas;
+ * el TTL mejora arranques repetidos sin forzar trabajo de red hasta que el usuario refresca.
+ */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { News, User } from '../types';
 

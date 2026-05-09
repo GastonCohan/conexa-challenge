@@ -1,3 +1,10 @@
+/**
+ * Navegación principal tras login: Bottom Tabs + Stack para detalle de noticia.
+ *
+ * ¿Qué hace? Define Home/Favorites (misma pantalla con params), Users, Settings en tabs; empila `NewsDetail` con header custom.
+ *
+ * ¿Por qué así? Stack raíz permite navegar al detalle preservando tabs; títulos/i18n desde `useTranslation` evitan strings fijos.
+ */
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

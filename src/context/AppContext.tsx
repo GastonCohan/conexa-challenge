@@ -1,3 +1,12 @@
+/**
+ * Estado global de la app: noticias, usuarios, favoritos y carga/refresco.
+ *
+ * ¿Qué hace? Expone reducer + efectos para fetch inicial/refresh con caché, carga IDs favoritos desde AsyncStorage
+ * y guarda cambios cuando el usuario marca/desmarca favoritos (tras el primer loading).
+ *
+ * ¿Por qué así? useReducer agrupa transiciones claras (LOAD_SUCCESS, START_REFRESH…); Context evita prop drilling;
+ * refresco “silencioso” tras pull usa refreshing en lugar de pantalla bloqueante entera cuando ya hay datos en memoria.
+ */
 import React, {
   createContext,
   ReactNode,

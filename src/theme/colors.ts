@@ -1,3 +1,10 @@
+/**
+ * Paleta semántica de la app (fondos, superficies, acentos, texto, error).
+ *
+ * ¿Qué hace? Centraliza hex usados por globalStyles/pantallas.
+ *
+ * ¿Por qué así? Unificar colores facilita modo claro único consistente sin hardcode disperso por componentes.
+ */
 export const colors = {
   background: '#F4F7FB',
   surface: '#FFFFFF',

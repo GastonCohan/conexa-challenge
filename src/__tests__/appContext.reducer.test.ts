@@ -1,3 +1,10 @@
+/**
+ * Tests unitarios del reducer de AppContext (transiciones puras sin React ni efectos).
+ *
+ * ¿Qué hace? Comprueba que cada acción modifica loading/refresh/error/noticias/favoritos esperados.
+ *
+ * ¿Por qué así? Al aislar reducer se valida la máquina de estados antes de mocks de AsyncStorage/red de fetch.
+ */
 import { Action, AppState, initialState, reducer } from '../context/AppContext';
 
 describe('AppContext reducer', () => {

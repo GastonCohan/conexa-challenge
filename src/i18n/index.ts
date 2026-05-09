@@ -1,3 +1,11 @@
+/**
+ * Inicialización de i18next + bridge React (`react-i18next`) y glue con AsyncStorage / locale nativo.
+ *
+ * ¿Qué hace? Carga JSON en/es; arranca idioma desde dispositivo; `hydrateLanguagePreference` aplica idioma guardado;
+ * `persistLanguage` sincroniza almacén + runtime.
+ *
+ * ¿Por qué así? Centralizar aquí permite que App.tsx sólo espere hidratación asíncrona y que Settings no conozca claves ni API de i18n.
+ */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Localization from 'expo-localization';
 import i18n from 'i18next';

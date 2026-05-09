@@ -1,3 +1,10 @@
+/**
+ * Campo de búsqueda reutilizable para filtrar listas en memoria (p. ej. noticias).
+ *
+ * ¿Qué hace? Composición de icono + TextInput controlado; desactiva autocorrección para términos exactos.
+ *
+ * ¿Por qué así? Patrón controlled component: el padre decide el filtro y puede compartir mismo estilo en tabs distintos.
+ */
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { colors } from '../theme/colors';

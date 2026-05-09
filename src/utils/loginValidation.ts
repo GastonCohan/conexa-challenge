@@ -1,4 +1,12 @@
 /**
+ * Reglas de validación del login (demo) aisladas y testables.
+ *
+ * ¿Qué hace? Email con patrón práctico (no RFC completo); contraseña largitud y al menos una letra + dígito.
+ *
+ * ¿Por qué así? Validar en helpers puros permite reutilizar en AuthContext/UI y cubrir edge cases en Jest sin montar RN.
+ */
+
+/**
  * Practical format check (not full RFC 5322): local@domain.tld
  */
 const EMAIL_PATTERN =

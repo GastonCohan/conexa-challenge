@@ -1,3 +1,10 @@
+/**
+ * Lista paginada de usuarios desde el estado global cargado junto con noticias.
+ *
+ * ¿Qué hace? FlatList incremental + refresh que reutiliza `refreshData`; resetea página al cambiar el array de usuarios.
+ *
+ * ¿Por qué así? Misma fuente (`fetchUsers`) compartida con AppContext evita segunda capa de cache por pantalla.
+ */
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';

@@ -1,3 +1,12 @@
+/**
+ * Autenticación demo: sesión persistida sin backend real.
+ *
+ * ¿Qué hace? Hidrata email/token desde AsyncStorage; `login` valida formato con loginValidation y guarda sesión mock;
+ * `logout` limpia almacenamiento y estado en memoria.
+ *
+ * ¿Por qué así? Se separa por completo del AppContext para que la navegación y datos pesados sólo arranquen tras login,
+ * alineado con el gate en App.tsx (`hydrated` evita flashes entre login y tabs).
+ */
 import React, { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { AuthSession, clearAuthSession, loadAuthSession, saveAuthSession } from '../storage/authStorage';
 import { validateLoginInput } from '../utils/loginValidation';

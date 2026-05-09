@@ -1,3 +1,10 @@
+/**
+ * Lista de noticias (home o favoritos): búsqueda, paginación en cliente, pull-to-refresh y navegación al detalle.
+ *
+ * ¿Qué hace? Lee estado de AppContext; usa `onlyFavorites` vía route para reutilizar pantalla en otro tab.
+ *
+ * ¿Por qué así? Paginar con `slice` en memoria tras fetch único simplifica UX sin más endpoints; refresh con bypass invalida caché del client.
+ */
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';

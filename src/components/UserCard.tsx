@@ -1,3 +1,10 @@
+/**
+ * Tarjeta de usuario: nombre, email, teléfono y avatar.
+ *
+ * ¿Qué hace? Presenta un ítem de la lista de usuarios usando el tipo `User`.
+ *
+ * ¿Por qué así? Mantiene markup y estilos de la fila aislados para reutilizar sólo layout en UsersScreen sin lógica extra.
+ */
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';

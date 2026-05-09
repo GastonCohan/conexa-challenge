@@ -1,3 +1,11 @@
+/**
+ * Persistencia mínima de sesión demo (email + token mock) en AsyncStorage.
+ *
+ * ¿Qué hace? Guarda/leer/borrar sesión como JSON para que el usuario permanezca logueado entre reinicios de app.
+ *
+ * ¿Por qué así? Mantener lectura/escritura en un módulo aparte permite mockear AsyncStorage en tests y no mezclar
+ * formato con la lógica de AuthContext.
+ */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SESSION_KEY = 'auth:session:v1';

@@ -1,3 +1,10 @@
+/**
+ * Tests de reglas de email/contraseña usadas por el login demo.
+ *
+ * ¿Qué hace? Ejemplos aceptados/rechazados y mapeo de `validateLoginInput`.
+ *
+ * ¿Por qué así? Las reglas viven fuera del componente RN para poder ejecutar sólo estas aserciones en Node/Jest rápido.
+ */
 import {
   isValidLoginEmail,
   isValidLoginPassword,

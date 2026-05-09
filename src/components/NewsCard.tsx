@@ -1,3 +1,10 @@
+/**
+ * Tarjeta de noticia en listas: preview, imagen, favorito y navegación por tap.
+ *
+ * ¿Qué hace? Muestra contenido resumido con chip opcional “top story”, icono bookmark y callbacks controlados por el padre.
+ *
+ * ¿Por qué así? Componente presentacional: no conoce rutas ni reducer; el listado inyecta navegación/context a través de props.
+ */
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';

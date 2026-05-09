@@ -1,3 +1,10 @@
+/**
+ * Detalle de noticia seleccionado por ID en rutas (`newsId`).
+ *
+ * ¿Qué hace? Busca la noticia en memoria (`AppContext.news`); permite toggle favorito desde header/embed.
+ *
+ * ¿Por qué así? Resolver por ID evita pasar payloads grandes por params del stack tipado en `RootStackParamList`.
+ */
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';

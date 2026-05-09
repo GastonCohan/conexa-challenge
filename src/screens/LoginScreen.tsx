@@ -1,3 +1,10 @@
+/**
+ * Formulario demo de acceso antes de navegar al contenido principal.
+ *
+ * ¿Qué hace? Estado local para email/password, mensajes desde i18n, llama `login` del AuthContext (validación + persistencia mock).
+ *
+ * ¿Por qué así? Pantalla aisla UX de login sin NavigationContainer hijo hasta que AuthProvider confirme sesión válida en App.tsx.
+ */
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';

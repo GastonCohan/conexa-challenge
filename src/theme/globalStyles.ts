@@ -1,3 +1,10 @@
+/**
+ * Estilos compartidos (contenedor de pantalla, tarjetas, tipografía repetida).
+ *
+ * ¿Qué hace? Construye `StyleSheet` con colores/tokens ya definidos para reutilización en pantallas y cards.
+ *
+ * ¿Por qué así? Agrupa diferencias grandes de layout/evita duplicación; los componentes importan sólo tokens que necesiten.
+ */
 import { StyleSheet } from 'react-native';
 import { colors } from './colors';
 import { fontSize, radius, spacing } from './tokens';

@@ -1,3 +1,10 @@
+/**
+ * Persistencia de IDs de noticias favoritas.
+ *
+ * ¿Qué hace? Guarda/recupera un array numérico en AsyncStorage tras serializar/deserializar con validación ligera.
+ *
+ * ¿Por qué así? Desacoplado de React permite probar persistencia sólo en Jest/AppContext efectos sin tocar UI.
+ */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FAVORITES_KEY = 'favorites:news';

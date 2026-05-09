@@ -1,3 +1,12 @@
+/**
+ * Raíz de la app Expo: monta navegación, i18n, áreas seguras y autenticación.
+ *
+ * ¿Qué hace? Muestra un loader hasta hidratar idioma; luego hasta hidratar la sesión;
+ * si no hay usuario muestra Login; si hay usuario monta AppProvider + MainNavigator bajo NavigationContainer.
+ *
+ * ¿Por qué así? Separa bootstrap (i18n/auth) del estado de datos (AppContext) para no cargar noticias
+ * ni favoritos hasta que el usuario esté “dentro”, y mantiene un solo árbol de navegación activo.
+ */
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';

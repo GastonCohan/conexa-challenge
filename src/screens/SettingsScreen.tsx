@@ -1,3 +1,10 @@
+/**
+ * Preferencias post-login: muestra cuenta mock, cambio persistido ES/EN y cierre de sesión.
+ *
+ * ¿Qué hace? Llama `persistLanguage`/`logout` desde contextos especializados; refleja idioma actual vía react-i18next.
+ *
+ * ¿Por qué así? Configuraciones transversales viven fuera del tab de contenido para mantener cabeceras y flujos cortos por dominio.
+ */
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';

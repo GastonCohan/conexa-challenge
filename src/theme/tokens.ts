@@ -1,3 +1,10 @@
+/**
+ * Tokens de espaciado, radios de borde y escalas tipográficas/ícono.
+ *
+ * ¿Qué hace? Define constantes nombradas reutilizables en estilos.
+ *
+ * ¿Por qué así? Escala discreta (`spacing.sm`, etc.) mantiene ritmo visual y evita valores mágicos en cada archivo.
+ */
 export const spacing = {
   xs: 4,
   sm: 8,
