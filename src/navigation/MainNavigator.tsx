@@ -84,6 +84,7 @@ export const MainNavigator = () => {
         component={NewsDetailScreen}
         options={({ navigation }) => ({
           title: t('newsDetail.headerTitle'),
+          headerTitleAlign: 'center',
           headerBackTitleVisible: false,
           headerLeft: () => (
             <Pressable style={styles.backButton} onPress={() => navigation.goBack()}>
